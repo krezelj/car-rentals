@@ -1,0 +1,48 @@
+.conent-home {
+    
+}
+
+.filter-container {
+    width: 25%;
+    font-family: Gotham;
+}
+
+.car-filters-container {
+    margin-top: 30px;
+    border-bottom: 3px solid var(--auxiliary-color);
+}
+
+.checkbox-filters-container {
+    display: flex;
+}
+
+.home-info-container {
+    margin: 30px 0 30px 0;
+}
+
+.car-container {
+    display: flex;
+    border-bottom: solid 3px #bbb;
+}
+
+.car-details {
+    width: 300px;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.car-image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.car-image {
+    width: 200px;
+    height: 200px;
+}
+
+.rent-button-container {
+    flex-grow: 1;
+    text-align: right;
+    margin: auto;
+}

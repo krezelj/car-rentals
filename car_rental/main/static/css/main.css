@@ -1,0 +1,32 @@
+@font-face {
+    font-family: Gotham;
+    src: url(../fonts/GothamMedium.ttf);
+}
+@font-face {
+    font-family: GothamBold;
+    src: url(../fonts/GothamBold.ttf);
+}
+@font-face {
+    font-family: GothamLight;
+    src: url(../fonts/GothamLight.ttf);
+}
+
+:root {
+    /* --first-color:#f0ece2; 
+    --second-color: #dfd3c3; 
+    --third-color: #c7b198;  */
+    --zero-color:#bbd;
+    --first-color:#88a; 
+    --second-color: #779; 
+    --third-color: #668; 
+
+    --auxiliary-color: #596e79;
+    --auxiliary-color-light: #697e89;
+    --auxiliary-color-active: #798e99;
+}
+
+body {
+    /* font-family: "Gill Sans", sans-serif; */
+    font-family: Gotham;
+    background-color: #fff;
+}

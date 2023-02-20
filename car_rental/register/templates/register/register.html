@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <div class="content-register">
+        <div style="height:50px;">
+            
+        </div>
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {% for error in field.errors %}
+                            <div class="error">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        {{ field.label_tag }}
+                        {% if field.field.required %}
+                            <b style="color: red;">*</b>
+                        {% endif %}
+                        <br> 
+                        {{ field }}
+                        {% if field.help_text %}
+                            <div class="help-container">
+                                {{ field.help_text|safe }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="my-button">Register</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

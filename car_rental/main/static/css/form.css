@@ -1,0 +1,61 @@
+.fieldWrapper {
+    margin-bottom: 10px;
+}
+
+.field-common {
+    margin-top: 5px;
+    width: 100%;
+    border: none;
+    background-color: #dde;
+    font-size: 1em;
+}
+
+.field-select {
+    font-family: GothamLight;
+    border: solid 1px;
+    outline: none;
+    font-size: 1em;
+    vertical-align: middle;
+    height: 30px;
+}
+
+.field-select-multiple-choices {
+    font-family: GothamLight;
+    margin-top: 5px;
+}
+
+.datetime-input {
+    margin-top: 5px;
+    width: 100%;
+    background-color: #dde;
+    border: solid 1px;
+    border-radius: 0;
+}
+
+.select-input {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.text-input {
+    width: 100%;
+    margin-top: 5px;
+    resize: none;
+}
+
+.field-common:focus {
+    outline: none;
+}
+
+
+.error {
+    color: #e44;
+    margin-bottom: 5px;
+}
+
+.help-container {
+    color: #888;
+    font-size: 0.75em;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}

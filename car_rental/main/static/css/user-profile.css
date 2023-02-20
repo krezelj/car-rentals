@@ -1,0 +1,37 @@
+.content-user-profile {
+    display: flex;
+}
+
+.user-details {
+    width: 20%;
+}
+
+.user-all-rentals {
+    width: 80%;
+    margin-left: 20px;
+}
+
+.user-current-rentals {
+    min-height: 50px;
+    border-bottom: solid 3px;
+    border-bottom-color: var(--auxiliary-color);
+    padding-bottom: 15px;
+}
+
+.user-past-rentals {
+    min-height: 50px;
+}
+
+.rental-details {
+    margin: 20px 20px 20px 0px;
+    background-color: var(--zero-color);
+    border-radius: 15px;
+    padding: 20px;
+    /* border-bottom: solid 3px var(--auxiliary-color); */
+}
+
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}

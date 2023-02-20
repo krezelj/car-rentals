@@ -1,0 +1,70 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content-user-profile">
+        {% if not user.is_authenticated %}
+            <div>
+                <h1>Sorry!</h1>
+                <p>
+                    It appears you do not have an account...
+                    You can sign up <a href="/register">here</a>!
+                </p>
+            </div>
+        {% else %}
+            <div class="user-details">
+                <div style="display: flex; justify-content: center;">
+                    <img src="{% static 'assets/images/profile_picture.jpg' %}" alt="profile_picture" class="profile-picture">
+                </div>
+                <div>
+                    <b>Full Name</b><br>{{user.get_full_name}}<br><br>
+                    <b>Email</b><br>{{user.email}}<br><br>
+                    <b>Driving Licence</b><br>{{user.driving_licence}}<br><br>
+                </div>
+                <input id="reset-button" class="my-button" type="button" onclick="location.href='/password_reset';" value="Reset Password" />
+            </div>
+            <div class="user-all-rentals">
+                <div class="user-current-rentals">
+                    <h3>Current Rentals</h3>
+                    {% if current_rentals|length == 0 %}
+                        <span style="font-fammily: GothamLight">There are no current rentals assigned to your account</span>
+                    {% endif%}
+                    {% for rental in current_rentals %}
+                        <div class="rental-details">
+                            You rented <b>{{ rental.vehicle_id.name }}</b> on {{ rental.start_date }}.
+                            Your car is available until {{ rental.end_date }}.
+                            <br>
+                            If you are done using your car you can end your rental prematurely.
+                            <input id="{{rental.id}}" data-rental-id="{{rental.id}}" class="my-button end-rental-button" 
+                                    type="button" value="End Rental"/>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="user-past-rentals">
+                    <h3>Past Rentals</h3>
+                    {% if past_rentals|length == 0 %}
+                        <span style="font-fammily: GothamLight">There are no past rentals assigned to your account</span>
+                    {% endif%}
+                    {% for rental in past_rentals %}
+                        <div class="rental-details">
+                            You rented <b>{{ rental.vehicle_id.name }}</b> on {{ rental.start_date }} until {{ rental.end_date }}.
+                            <br>
+                            <br>
+                            Your calculated rating for this rental is <b>{{ rental.rating_id.value }}/{{rental.rating_id.MAX_VALUE}}</b><br>
+                            <b>Reason for this rating: </b>{{rental.rating_id.comment}}<br><br>
+                            We hope you've enjoyed your trip!
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+<script>
+    var buttons = document.getElementsByClassName("end-rental-button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() {
+            var rental_id = this.getAttribute("data-rental-id");
+            window.location.href = '/end_rental/' + rental_id;
+        });
+    }
+</script>
+{% endblock%}

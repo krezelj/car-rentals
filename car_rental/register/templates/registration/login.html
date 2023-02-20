@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="content-login">
+        <div style="height:50px">
+            <p>
+                Sign in and rent a car in just a few minutes!
+            </p>
+        </div>
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {% for error in field.errors %}
+                            <div class="error">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        {{ field.label_tag }}
+                        {% if field.field.required %}
+                            <b style="color: red;">*</b>
+                        {% endif %}
+                        <br> 
+                        {% render_field field class="field-common" %}
+                        {% if field.help_text %}
+                            <div class="help-container">
+                                {{ field.help_text|safe }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div style="display: flex;">
+                    <button type="submit" class="my-button" style="margin-top: 16px">Log In</button>
+                    <p style="margin-left: 20px; padding: 10px;">No account? <a href="/register">Sign up now!</a></p>
+                </div>
+                <input id="reset-button" class="my-button" type="button" onclick="location.href='/password_reset';" value="Reset Password" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

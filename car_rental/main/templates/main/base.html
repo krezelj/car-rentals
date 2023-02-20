@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/rent.css' %}">
+<link rel="stylesheet" href="{% static 'css/user-profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<link rel="stylesheet" href="{% static 'css/my-button.css' %}">
+<body>
+    <div class="navbar">
+        <div id="about-section" class="navbar-container">
+            <input class="my-button" type="button" onclick="location.href='/about';" value="About" />
+        </div>
+        <div id="title-section" class="navbar-container">
+            <a href="/" id="title-link">
+                <h1>CaRently</h1>
+            </a>
+        </div>
+        <div id="user-section" class="navbar-container">
+            {% if not user.is_authenticated %}
+                <input class="my-button" type="button" onclick="location.href='/login';" value="Sign In" />
+            {% else %}
+                {% if user.is_superuser %}
+                    <input class="my-button" type="button" onclick="location.href='/admin';" value="Admin Panel" />
+                {% endif %}
+                <input class="my-button" type="button" onclick="location.href='/user_profile';" value="My Profile" />
+                <input class="my-button" type="button" onclick="location.href='/logout';" value="Log Out" />
+            {% endif %}
+        </div>
+    </div>
+    <div class="content-common">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{% extends 'main/base.html' %}
+
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+<div class="conent-common content-home">
+    <div class="home-info-container">
+        <h2>
+            FIND A CAR THAT SUITS YOU BEST AND RENT IT TODAY!
+        </h2>
+        <p style="font-family: GothamLight;">
+            On our site you will find <i>the best</i> selection of cars to rent. Pay for the day and use it without limit.
+            <br>
+            And if you only need to get from one place to another check out our drop off availability.
+            Renting a car has never been easier!
+        </p>
+    </div>
+    <div class="car-filters-container">
+        <p>
+            Find the best car for you trip ({{vehicles|length}} cars that match criteria)
+        </p>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="checkbox-filters-container">
+                <div class="filter-container">
+                    {{ form.vehicle_type.label_tag }}
+                    {% render_field form.vehicle_type class="field-select-multiple-choices" %}
+                </div>
+                <div class="filter-container">
+                    {{ form.fuel_type.label_tag }}
+                    {% render_field form.fuel_type class="field-select-multiple-choices" %}
+                </div>
+                <div class="filter-container">
+                    {{ form.transmission_type.label_tag }}
+                    {% render_field form.transmission_type class="field-select-multiple-choices" %}
+                </div>
+                <div class="filter-container">
+                    {{ form.has_air_conditioning.label_tag }}
+                    {% render_field form.has_air_conditioning class="field-select-multiple-choices" %}
+                </div>
+            </div>
+            <div>
+                {{ form.sort_by.label_tag }}
+                {% render_field form.sort_by class="field-select" %}
+                <button type="submit" class="my-button" id="search-button">Search</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <div class="car-list-container">
+        {% for v in vehicles%}
+            <div class="car-container">
+                <div class="car-image-container">
+                    <img class="car-image" src={% static "assets/images/default_car.png"%} alt="car">
+                </div>
+                <div class="car-details">
+                    {{v.name}} ({{v.vehicle_type|lower|capfirst}}/{{v.transmission_type|lower|capfirst}})<br><br>
+                    Price: <span style="font-family: GothamLight">{{v.price_per_day}} PLN/day</span><br>
+                    Seats: <span style="font-family: GothamLight">{{v.capacity}}</span><br>
+                    AC: <span style="font-family: GothamLight">{{v.has_air_conditioning|yesno:"Yes,No"}}</span><br>
+                    Fuel: <span style="font-family: GothamLight">{{v.fuel_type|lower|capfirst}}</span><br>
+                </div>
+                <div class="rent-button-container">
+                    {% if not user.is_authenticated %}
+                        <input id="dummy-rent" class="my-button dummy-button" type="button" disabled value="Rent This Car"/>
+                        <br><span style="font-size: 0.8em;">Sign in to rent a car</span>
+                    {% else %}
+                        <input id="{{v.id}}" data-vehicle-id="{{v.id}}" class="my-button active-button" type="button" value="Rent This Car"/>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    var buttons = document.getElementsByClassName("active-button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() {
+            var vehicle_id = this.getAttribute("data-vehicle-id");
+            console.log(vehicle_id)
+            window.location.href = '/rent/' + vehicle_id;
+        });
+    }
+</script>
+{% endblock %}

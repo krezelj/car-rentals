@@ -1,0 +1,60 @@
+.my-button {
+    width: auto;
+    min-width: 150px;
+
+    height: 40px;
+    max-height: 40px;
+
+    border-radius: 20px;
+    background-color: var(--third-color);
+    border: none;
+    
+    font-size: 1em;
+    font-family: Gotham;
+    color: white;
+
+    margin: 10px 5px 10px 5px;
+}
+
+.my-button:hover:enabled {
+    border-radius: 15px;
+    transition-duration: 100ms;
+    background-color: var(--second-color);
+    cursor: pointer;
+}
+
+.my-button:active:enabled {
+    background-color: var(--first-color);
+}
+
+.my-button:disabled {
+    background-color: #aaa
+}
+
+.end-rental-button {
+    height: 30px;
+    border-radius: 15px;
+}
+
+.end-rental-button:hover {
+    border-radius: 10px;
+}
+
+#dummy-rent {
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+#reset-button {
+    margin: 0px;
+    width: 100%;
+}
+
+#search-button {
+    height: 30px;
+    border-radius: 15px;
+}
+
+#search-button:hover {
+    border-radius: 10px;
+}

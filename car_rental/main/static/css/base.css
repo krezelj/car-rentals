@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    border-bottom: 3px solid var(--auxiliary-color);
+}
+
+.navbar-container {
+    width: 33%;
+    vertical-align: middle;
+}
+
+.content-common {
+    width: 80%;
+    margin: auto;
+}
+
+#about-section {
+    text-align: left;
+    margin-top: 10px;
+}
+
+#title-section {
+    text-align: center;
+    width: 34%;
+}
+
+#user-section {
+    text-align: right;
+    margin-top: 10px;
+}
+
+#profile-icon {
+    width: 50px;
+    height: 50px;
+}
+
+#title-link {
+    text-decoration: none;
+    color: black;
+}
